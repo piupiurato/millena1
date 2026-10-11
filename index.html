@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parabéns, Millena!</title>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&family=Shrikhand&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EFE6FB;
+    --paper: #FBF7FF;
+    --ink: #2E1744;
+    --muted: #6B5584;
+    --pink: #FF4F86;
+    --sun: #FFC83D;
+    --mint: #5ED3B0;
+    --violet: #8A5CF6;
+    --flame: #FF9F1C;
+    --flame-core: #FFE066;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1E1029;
+      --paper: #2A1639;
+      --ink: #F5EBFF;
+      --muted: #BBA3D6;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1E1029;
+    --paper: #2A1639;
+    --ink: #F5EBFF;
+    --muted: #BBA3D6;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  *, *::before, *::after { box-sizing: inherit; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  .wrap { max-width: 68rem; margin: 0 auto; padding-inline: 1.25rem; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 100svh;
+    display: grid;
+    align-items: center;
+    padding-block: 2.5rem 3rem;
+  }
+  .hero .wrap {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 52rem) {
+    .hero .wrap { grid-template-columns: 1.15fr 1fr; gap: 3rem; }
+  }
+  h1 {
+    font-family: 'Shrikhand', 'Georgia', serif;
+    font-weight: 400;
+    font-size: clamp(3.4rem, 13vw, 8.5rem);
+    line-height: .95;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.25rem;
+    text-wrap: balance;
+  }
+  .lead {
+    font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+    max-width: 28ch;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .cake-stage { display: grid; justify-items: center; gap: 1rem; }
+  .cake-btn {
+    all: unset;
+    cursor: pointer;
+    display: block;
+    width: min(100%, 22rem);
+    border-radius: 2rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cake-btn:focus-visible { outline: 4px solid var(--violet); outline-offset: 6px; }
+  .cake-btn svg { display: block; width: 100%; height: auto; overflow: visible; color: var(--ink); }
+
+  .flame { transform-box: fill-box; transform-origin: 50% 100%; animation: flicker 1.1s ease-in-out infinite alternate; transition: opacity .25s, transform .25s; }
+  .glow { transition: opacity .3s; }
+  .smoke { opacity: 0; }
+  .out .flame { opacity: 0; transform: scale(.3); animation: none; }
+  .out .glow { opacity: 0; }
+  .out .smoke { animation: rise 2.2s ease-out forwards; }
+  @keyframes flicker {
+    from { transform: scale(1, 1) rotate(-2deg); }
+    to   { transform: scale(.92, 1.08) rotate(2deg); }
+  }
+  @keyframes rise {
+    0%   { opacity: 0; transform: translateY(0); }
+    20%  { opacity: .55; }
+    100% { opacity: 0; transform: translateY(-26px); }
+  }
+  .hint { margin: 0; font-weight: 500; text-align: center; min-height: 3em; max-width: 26ch; }
+
+  /* ---------- Conteúdo que abre ---------- */
+  .reveal { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .9s ease; }
+  .reveal > .inner { overflow: hidden; min-height: 0; }
+  .js .reveal.locked { grid-template-rows: 0fr; }
+  .js .reveal.locked > .inner { visibility: hidden; }
+
+  section.block { padding-block: clamp(3rem, 8vw, 6rem); }
+  h2 {
+    font-family: 'Shrikhand', 'Georgia', serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 5.5vw, 3.4rem);
+    line-height: 1.05;
+    margin: 0 0 1.75rem;
+  }
+
+  .letter {
+    background: var(--paper);
+    border-radius: 1.75rem;
+    padding: clamp(1.75rem, 5vw, 3.5rem);
+    max-width: 44rem;
+  }
+  .letter p { font-size: 1.15rem; line-height: 1.75; margin: 0 0 1.15rem; max-width: 60ch; }
+  .letter p:last-child { margin-bottom: 0; }
+  .sign { font-family: 'Shrikhand', 'Georgia', serif; font-size: 1.5rem !important; color: var(--pink); margin-top: 1.5rem !important; }
+
+  .reasons { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem 3rem; }
+  @media (min-width: 46rem) { .reasons { grid-template-columns: 1fr 1fr; } }
+  .reasons li {
+    position: relative;
+    padding-left: 2rem;
+    font-size: 1.2rem;
+    line-height: 1.45;
+  }
+  .reasons li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: .45em;
+    width: 1rem; height: 1rem;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    background: var(--pink);
+  }
+  .reasons li:nth-child(3n+2)::before { background: var(--sun); }
+  .reasons li:nth-child(3n+3)::before { background: var(--mint); }
+
+  .days { font-size: clamp(1.4rem, 3.6vw, 2.2rem); line-height: 1.3; max-width: 22ch; margin: 0; }
+  .days .num { font-family: 'Shrikhand', 'Georgia', serif; color: var(--pink); font-size: 1.5em; }
+
+  footer { padding-block: 3rem 4rem; }
+  .final { font-family: 'Shrikhand', 'Georgia', serif; font-size: clamp(2.2rem, 7vw, 4.5rem); line-height: 1.05; margin: 0 0 1rem; }
+  footer p { margin: 0; color: var(--muted); }
+
+  #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 50; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flame { animation: none; }
+    .out .smoke { animation: none; }
+    .reveal { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Parabéns,<br>Millena!</h1>
+      <p class="lead">Hoje o dia é todo seu. Tenho uma coisa pra você.</p>
+    </div>
+    <div class="cake-stage">
+      <button class="cake-btn" id="cake" type="button" aria-pressed="false" aria-label="Soprar a vela do bolo">
+        <svg viewBox="0 0 260 300" role="img" aria-hidden="true">
+          <ellipse cx="130" cy="270" rx="112" ry="14" fill="currentColor" opacity=".14"/>
+          <rect x="30" y="190" width="200" height="72" rx="16" fill="var(--pink)"/>
+          <rect x="60" y="130" width="140" height="64" rx="14" fill="var(--sun)"/>
+          <path d="M30 190 H230 V208 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 Z" fill="var(--paper)"/>
+          <path d="M60 130 H200 V146 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 q-10 14 -20 0 Z" fill="var(--paper)"/>
+          <g fill="var(--mint)">
+            <circle cx="52" cy="236" r="4"/><circle cx="84" cy="248" r="4"/><circle cx="116" cy="234" r="4"/>
+            <circle cx="150" cy="248" r="4"/><circle cx="184" cy="236" r="4"/><circle cx="210" cy="250" r="4"/>
+          </g>
+          <g fill="var(--violet)">
+            <circle cx="98" cy="166" r="3.5"/><circle cx="130" cy="172" r="3.5"/><circle cx="162" cy="164" r="3.5"/>
+          </g>
+          <rect x="122" y="92" width="16" height="40" rx="4" fill="var(--mint)"/>
+          <rect x="122" y="102" width="16" height="5" fill="var(--paper)" opacity=".7"/>
+          <rect x="122" y="116" width="16" height="5" fill="var(--paper)" opacity=".7"/>
+          <line x1="130" y1="92" x2="130" y2="84" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle class="glow" cx="130" cy="62" r="44" fill="var(--sun)" opacity=".28"/>
+          <g class="flame">
+            <path d="M130 46 C142 62 144 76 130 84 C116 76 118 62 130 46 Z" fill="var(--flame)"/>
+            <path d="M130 62 C136 70 136 78 130 82 C124 78 124 70 130 62 Z" fill="var(--flame-core)"/>
+          </g>
+          <g class="smoke" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0">
+            <path d="M126 80 q-6 -10 0 -18 q6 -8 0 -16"/>
+            <path d="M134 80 q6 -10 0 -18 q-6 -8 0 -16" />
+          </g>
+        </svg>
+      </button>
+      <p class="hint" id="hint" aria-live="polite">Toque na vela e faça um pedido.</p>
+    </div>
+  </div>
+</header>
+
+<main class="reveal locked" id="reveal">
+  <div class="inner">
+
+    <section class="block" id="carta" aria-labelledby="t-carta">
+      <div class="wrap">
+        <h2 id="t-carta">Para você</h2>
+        <article class="letter">
+          <p>Millena,</p>
+          <p>Hoje é o seu dia e eu queria que você soubesse, preto no branco, o quanto você me faz feliz. Com você, as coisas simples ficam melhores e os dias difíceis ficam mais leves.</p>
+          <p>Obrigado(a) por ser quem você é: por rir, por me ouvir, por estar sempre ali. Espero que este novo ano traga tudo o que você merece, e que eu esteja lá pra ver cada momento.</p>
+          <p>Parabéns, meu amor. Neste ano, quero continuar sendo a pessoa que está ao seu lado.</p>
+          <p class="sign">Com todo o meu amor,</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="t-motivos">
+      <div class="wrap">
+        <h2 id="t-motivos">Coisas que eu amo em você</h2>
+        <ul class="reasons">
+          <li>A sua risada, que é o meu som favorito.</li>
+          <li>O jeito como você deixa qualquer dia ruim mais leve.</li>
+          <li>Acreditar em mim mesmo quando eu duvido.</li>
+          <li>Ficar linda até logo depois de acordar.</li>
+          <li>A sua vontade de experimentar tudo pelo menos uma vez.</li>
+          <li>Ser a minha pessoa favorita pra não fazer nada.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" id="tempo" aria-label="Tempo juntos">
+      <div class="wrap">
+        <p class="days">Já se passaram <span class="num" id="dias">0</span> dias desde que a nossa história começou.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <p class="final">Feliz aniversário, Millena.</p>
+        <p>Feito por mim, só pra você.</p>
+      </div>
+    </footer>
+
+  </div>
+</main>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<script>
+  // ====== PERSONALIZE AQUI ======
+  // Data em que vocês começaram a namorar (AAAA-MM-DD). Deixe '' para esconder o contador.
+  const DESDE = '2026-10-10';
+  // ==============================
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cake = document.getElementById('cake');
+  const hint = document.getElementById('hint');
+  const reveal = document.getElementById('reveal');
+  const diasEl = document.getElementById('dias');
+  const tempoSec = document.getElementById('tempo');
+
+  // Dias juntos
+  let totalDias = null;
+  if (DESDE) {
+    const d = new Date(DESDE + 'T00:00:00');
+    const n = Math.floor((Date.now() - d.getTime()) / 86400000);
+    if (!isNaN(n) && n >= 0) totalDias = n;
+  }
+  if (totalDias === null) { tempoSec.hidden = true; }
+
+  function countUp() {
+    if (totalDias === null) return;
+    if (reduced) { diasEl.textContent = totalDias; return; }
+    const dur = 1400, t0 = performance.now();
+    (function tick(t) {
+      const p = Math.min((t - t0) / dur, 1);
+      const e = 1 - Math.pow(1 - p, 3);
+      diasEl.textContent = Math.round(totalDias * e);
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+
+  // Confetti
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  function confetti() {
+    if (reduced) return;
+    const dpr = window.devicePixelRatio || 1;
+    const W = canvas.width = innerWidth * dpr;
+    const H = canvas.height = innerHeight * dpr;
+    const r = cake.getBoundingClientRect();
+    const ox = (r.left + r.width / 2) * dpr;
+    const oy = (r.top + r.height * 0.25) * dpr;
+    const colors = ['#FF4F86', '#FFC83D', '#5ED3B0', '#8A5CF6'];
+    const parts = Array.from({ length: 160 }, (_, i) => ({
+      x: ox, y: oy,
+      vx: (Math.random() - .5) * 15 * dpr,
+      vy: -(Math.random() * 13 + 5) * dpr,
+      w: (6 + Math.random() * 6) * dpr,
+      h: (8 + Math.random() * 8) * dpr,
+      a: Math.random() * 6.28,
+      va: (Math.random() - .5) * .4,
+      c: colors[i % colors.length]
+    }));
+    const start = performance.now();
+    (function frame(t) {
+      ctx.clearRect(0, 0, W, H);
+      let alive = false;
+      for (const p of parts) {
+        p.vy += .35 * dpr; p.vx *= .99;
+        p.x += p.vx; p.y += p.vy; p.a += p.va;
+        if (p.y < H + 30 * dpr) alive = true;
+        ctx.save();
+        ctx.translate(p.x, p.y); ctx.rotate(p.a);
+        ctx.fillStyle = p.c;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      }
+      if (alive && t - start < 5000) requestAnimationFrame(frame);
+      else ctx.clearRect(0, 0, W, H);
+    })(start);
+  }
+
+  let opened = false;
+  cake.addEventListener('click', () => {
+    const isOut = cake.classList.toggle('out');
+    cake.setAttribute('aria-pressed', String(isOut));
+    if (isOut) {
+      hint.textContent = 'Pedido feito. Sua carta está logo abaixo.';
+      if (!opened) {
+        opened = true;
+        confetti();
+        reveal.classList.remove('locked');
+        countUp();
+        setTimeout(() => {
+          document.getElementById('carta').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+        }, 700);
+      }
+    } else {
+      hint.textContent = 'Acendeu de novo. Faça mais um pedido.';
+    }
+  });
+</script>
+</body>
+</html>
